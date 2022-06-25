@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class CardDTO {
     private String name;
     private String edition;
-    private Language language;private Boolean foil;
+    private Language language;
+    private Boolean foil;
     private BigDecimal price;
 }

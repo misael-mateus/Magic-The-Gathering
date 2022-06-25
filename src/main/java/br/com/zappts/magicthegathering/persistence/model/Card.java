@@ -22,4 +22,6 @@ public class Card {
     private Boolean foil;
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+    @OneToOne
+    private Player player;
 }
