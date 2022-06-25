@@ -1,4 +1,4 @@
-package br.com.zappts.magicthegathering.model;
+package br.com.zappts.magicthegathering.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,20 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Player implements Serializable {
+@Table(name = "player")
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
     @Column(name = "name", nullable = false)
     private String name;
     @OneToMany

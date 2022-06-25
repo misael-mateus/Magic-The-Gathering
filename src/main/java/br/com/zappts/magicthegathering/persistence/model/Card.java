@@ -1,8 +1,7 @@
-package br.com.zappts.magicthegathering.model;
+package br.com.zappts.magicthegathering.persistence.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Table(name = "card")
@@ -11,7 +10,7 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "edition", nullable = false)
