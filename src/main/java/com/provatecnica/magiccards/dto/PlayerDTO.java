@@ -4,11 +4,11 @@ import com.provatecnica.magiccards.model.Collection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 public class PlayerDTO{
     private String name;
-    private List<Collection> collection;
+    private Set<Collection> collection;
 }

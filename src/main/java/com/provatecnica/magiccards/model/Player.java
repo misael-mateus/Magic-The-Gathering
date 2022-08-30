@@ -5,8 +5,8 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,7 +17,7 @@ public class Player {
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "player_id")
-    private List<Collection> collection;
+    private Set<Collection> collection;
     private String name;
 
     @Override

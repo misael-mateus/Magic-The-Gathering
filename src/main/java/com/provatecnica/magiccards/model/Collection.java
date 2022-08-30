@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+
 @Entity
 @Setter
 @Getter
@@ -12,9 +13,9 @@ public class Collection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Collection.class)
-    @JoinColumn(name = "collection_id")
-    private List<Card> cards;
-
+    private String name;
+    @ManyToMany(mappedBy = "collections")
+    private Set<ItemCard> cards;
+    private Integer quantityFoil;
 
 }

@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -18,15 +19,18 @@ public class PlayerService {
     @Autowired
     private ModelMapper mapper;
 
-    public void newPlayer(PlayerDTO playerDTO){
-        this.repository.saveAndFlush(this.mapper.map(playerDTO,Player.class));
+    @Transactional
+    public void newPlayer(PlayerDTO playerDTO) {
+        this.repository.saveAndFlush(this.mapper.map(playerDTO, Player.class));
     }
 
-    public Optional<PlayerDTO> findPlayerById(Long id){
-        return Optional.of(this.mapper.map(this.repository.findById(id),PlayerDTO.class));
+    @Transactional
+    public Optional<Player> findPlayerById(Long id) {
+        return this.repository.findById(id);
     }
 
-    public Optional<PlayerDTO> alterPlayer(Long id, PlayerDTO changePlayer){
+    @Transactional
+    public Optional<PlayerDTO> alterPlayer(Long id, PlayerDTO changePlayer) {
         var player = this.repository.findById(id);
         var changedPlayer = player.map(p -> {
             p.setName(changePlayer.getName());
@@ -37,5 +41,9 @@ public class PlayerService {
         return Optional.of(this.mapper.map(changedPlayer, PlayerDTO.class));
     }
 
+    @Transactional
+    public void deletePlayer(Long id) {
+        this.repository.deleteById(id);
+    }
 
 }
